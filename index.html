@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Tone.js Piano</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
+	<link href="https://fonts.googleapis.com/css?family=Dancing+Script" rel="stylesheet">
+	<link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+	<div class="wrapper">
+		<h1>Let's play the Piano!!</h1>
+		<div class="template_piano">
+			<tone-content>
+				<tone-piano></tone-piano>
+				<tone-synth></tone-synth>
+			</tone-content>
+		</div>
+	</div>
+
+	<script src="js/tone.js"></script>
+	<script src="js/tonejs-ui.js"></script>
+	<script type="text/javascript">
+		var synth = new Tone.Synth({
+			"oscillator": {
+				"type": "amtriangle",
+				"harmonicity": 0.5,
+				"modulationType": "sine"
+			},
+			"envelope": {
+				"attackCurve": "exponential",
+				"attack": 0.05,
+				"decay": 0.2,
+				"sustain": 0.2,
+				"release": 1.5,
+			},
+			"portamento": 0.05
+		}).toMaster();
+
+		//bind the interface
+		document.querySelector("tone-piano").bind(synth);
+		document.querySelector("tone-synth").bind(synth);
+	</script>
+</body>
+
+</html>
